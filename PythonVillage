@@ -70,8 +70,7 @@ def count_freq(file):
     with open(file, 'r') as infile, open('outfile4.txt' , 'w') as outfile:
         words = infile.readline().split()
         count = [words.count(w) for w in words]
-        list = []
-        print(count)
+        outfile.append(count)
 
 def main():
    # sum_of_odds(7514,9821)
