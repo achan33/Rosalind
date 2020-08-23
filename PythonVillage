@@ -1,1 +1,88 @@
+#!usr/bin/env python3
 
+#utilized windows so shebang isn't needed but included just in case
+
+import sys
+
+
+#method splits string based on index range given from file
+def split_string(file):
+    stuff = file.readlines()
+    string = stuff[0]
+    num = stuff[1]
+    num_temp = num.split(" ")
+    num_temp = [int(i) for i in num_temp]
+    a = string[num_temp[0]:(num_temp[1]+1)]
+    b = string[num_temp[2]:(num_temp[3]+1)]
+    subset = [a,b]
+    return subset
+
+#method give nrange of min to max calculate sum of odds    
+def sum_of_odds(min, max):
+    sum =0
+    for i in range(min ,max):
+        if (min%2==1):
+            sum = sum + min
+        min= min+1
+    if (max%2 ==1):
+        sum = sum + max
+    return sum
+
+#another method to calculate sum of odds
+def sum_of_odd(min, max):
+    sum =0
+    while min<=max:
+        if(max%2==1):
+            sum = sum + max
+        max = max-1
+    return sum
+
+#method to parse through even lines of file
+def parse_even_lines(file):
+    #readlines() reads all content and gen list of strings
+    #readline reads one line and returns string 
+    info = file.readlines()
+    i= 1
+    outfile = open('file2.txt', 'w')
+    for lines in info:
+        if(i%2 ==0): 
+            outfile.write(lines)
+        i = i +1
+    outfile.close()
+
+#another method to parse even:
+def parse_even(file):
+    with open(file, 'r') as infile, open("outfile2.txt", 'w') as outfile:
+        outfile.write("".join(infile.readlines()[1::2]))
+
+#method takes in a string s and counts frequency of each word
+def count_freq_word(file):
+        
+    with open(file,'r') as infile, open('outfile3.txt' , 'w') as outfile:
+        string = infile.readline()
+        words = string.split(' ')
+        from collections import Counter 
+        counts = Counter(words)
+        for k,v in counts.most_common():
+            outfile.write("{} {}\n".format(k,v))
+
+def count_freq(file):
+    with open(file, 'r') as infile, open('outfile4.txt' , 'w') as outfile:
+        words = infile.readline().split()
+        count = [words.count(w) for w in words]
+        list = []
+        print(count)
+
+def main():
+   # sum_of_odds(7514,9821)
+   # count_freq(file)
+   # parse_even_lines(file)
+   # res = split_string(file)
+   #parse_even(file) 
+
+   
+
+if __name__ == '__main__':
+        main()
+else:
+    print ("Program executed")
