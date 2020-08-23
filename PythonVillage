@@ -6,6 +6,7 @@ import sys
 
 
 #method splits string based on index range given from file
+#first line is string , second line are the indices
 def split_string(file):
     stuff = file.readlines()
     string = stuff[0]
